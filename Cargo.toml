@@ -1,0 +1,23 @@
+[package]
+name = "base58check"
+description = "Base58Check encoding"
+version = "0.0.1"
+license = "MIT/Apache-2.0"
+authors = ["Vitaly Domnikov <dotcypress@gmail.com>"]
+documentation = "https://github.com/dotcypress/base58check"
+homepage = "https://github.com/dotcypress/base58check"
+readme = "README.md"
+repository = "https://github.com/dotcypress/base58check"
+
+[badges.appveyor]
+branch = "master"
+repository = "dotcypress/base58check"
+service = "github"
+
+[badges.travis-ci]
+branch = "master"
+repository = "dotcypress/base58check"
+
+[dependencies]
+base58 = "0.1.0"
+rust-crypto = "0.2.36"
