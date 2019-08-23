@@ -1,12 +1,11 @@
 //! Base58Check-to-text encoding
 
 extern crate base58;
-extern crate crypto;
+extern crate sha2;
 
 use std::iter;
 use base58::{FromBase58, ToBase58};
-use crypto::digest::Digest;
-use crypto::sha2::Sha256;
+use sha2::{Digest, Sha256};
 
 pub use base58::FromBase58Error;
 
@@ -61,13 +60,12 @@ impl FromBase58Check for str {
 
 fn double_sha256(payload: &[u8]) -> Vec<u8> {
     let mut hasher = Sha256::new();
-    let mut hash = vec![0; hasher.output_bytes()];
     hasher.input(&payload);
-    hasher.result(&mut hash);
-    hasher.reset();
-    hasher.input(&hash);
-    hasher.result(&mut hash);
-    hash.to_vec()
+    let output: Vec<_> = hasher.result().into_iter().collect();
+
+    let mut hasher = Sha256::new();
+    hasher.input(&output);
+    hasher.result().into_iter().collect()
 }
 
 #[cfg(test)]

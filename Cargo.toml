@@ -20,4 +20,4 @@ repository = "dotcypress/base58check"
 
 [dependencies]
 base58 = "0.1.0"
-rust-crypto = "0.2.36"
+sha2 = "0.8"
